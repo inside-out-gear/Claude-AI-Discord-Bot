@@ -84,7 +84,7 @@ async def on_message(message):
                 if response.completion:
                     response_text = response.completion.strip()
                     # Split the response into pages
-                    page_size = 2000  # Discord's maximum message length
+                    page_size = 1900  # Reduced to leave room for code block markup
                     response_pages = [response_text[i:i+page_size] for i in range(0, len(response_text), page_size)]
 
                     # Detect the script type based on the file extension or content
@@ -92,10 +92,22 @@ async def on_message(message):
 
                     # Send the response pages with the appropriate markup
                     for page in response_pages:
+                        # Remove any problematic characters or formatting
+                        page = page.replace("```", "")  # Remove triple backticks to avoid nested code blocks
+                        page = page.replace("`", "'")  # Replace backticks with single quotes
+
                         if script_type:
-                            await message.channel.send(f"```{script_type}\n{page}\n```")
+                            message_content = f"```{script_type}\n{page}\n```"
                         else:
-                            await message.channel.send(f"```\n{page}\n```")
+                            message_content = f"```\n{page}\n```"
+
+                        if len(message_content) <= 2000:
+                            await message.channel.send(message_content)
+                        else:
+                            # Split the message content into smaller chunks
+                            chunks = [message_content[i:i+1900] for i in range(0, len(message_content), 1900)]
+                            for chunk in chunks:
+                                await message.channel.send(chunk)
 
                     # Append Claude's response to the conversation history
                     conversation_history[user_id].append(f"{anthropic.AI_PROMPT} {response_text}")
