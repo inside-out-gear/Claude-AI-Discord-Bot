@@ -34,11 +34,15 @@ def detect_script_type(response_text):
     # Implement your script type detection logic here
     # Return the detected script type as a string or None if no specific type is detected
     # Example:
-    if response_text.startswith("```python"):
+    if "```python" in response_text:
         return "python"
-    elif response_text.startswith("```javascript"):
+    elif "```javascript" in response_text:
         return "javascript"
-    elif response_text.startswith("```bash"):
+    elif "```html" in response_text:
+        return "html"
+    elif "```css" in response_text:
+        return "css"
+    elif "```bash" in response_text:
         return "bash"
     else:
         return None
@@ -92,10 +96,6 @@ async def on_message(message):
 
                     # Send the response pages with the appropriate markup
                     for page in response_pages:
-                        # Remove any problematic characters or formatting
-                        page = page.replace("```", "")  # Remove triple backticks to avoid nested code blocks
-                        page = page.replace("`", "'")  # Replace backticks with single quotes
-
                         if script_type:
                             message_content = f"```{script_type}\n{page}\n```"
                         else:
