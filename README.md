@@ -4,6 +4,21 @@ Here's the formatted version of the README file for Discord:
 
 This repository contains a Python script for a Discord bot that integrates with Anthropic's Claude API. The bot listens for messages starting with the word "Claude" and sends the message content to the Claude API for processing. The bot then formats the response from Claude as pages using Discord markup and sends it back to the user.
 
+# Discord Bot Features
+
+- Integrates with the Anthropic Claude API to provide conversational responses
+- Supports syntax highlighting for code blocks in responses using Discord Markdown
+  - Automatically detects the script type based on the presence of specific code block markers (e.g., ```python, ```javascript, etc.)
+  - Supports syntax highlighting for Python, JavaScript, HTML, CSS, and Bash
+  - Uses generic code block markup (```) if no specific script type is detected
+- Handles long responses by splitting them into multiple pages and sending them as separate messages
+- Maintains conversation history for each user to provide context-aware responses
+- Implements retry logic with exponential backoff to handle API errors and overload situations
+- Provides informative error messages to users in case of API issues or low credit balance
+- Logs errors and unhandled exceptions for debugging purposes
+- Utilizes environment variables for secure storage of sensitive information (e.g., API keys)
+- Supports easy customization and extension with modular code structure
+
 ## Prerequisites
 
 Before setting up the bot, make sure you have the following:
