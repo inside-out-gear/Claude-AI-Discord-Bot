@@ -25,7 +25,7 @@ Before setting up the bot, make sure you have the following:
 
 - Python 3.7 or higher installed on your system
 - A Discord bot token (obtained from the Discord Developer Portal)
-- An Anthropic API key (obtained from the Anthropic website)
+- An Anthropic API key (obtained from the Anthropic website https://console.anthropic.com/ - *you will need to add credit)
 
 ## Setup
 
