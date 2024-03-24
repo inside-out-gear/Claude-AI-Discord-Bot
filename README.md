@@ -1,4 +1,4 @@
-Here's the formatted version of the README file for Discord:
+
 
 # Discord Bot with Anthropic's Claude API
 
