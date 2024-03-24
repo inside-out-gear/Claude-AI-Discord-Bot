@@ -186,4 +186,3 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 
-This formatted version uses proper Markdown syntax, including headings, bullet points, code blocks, and horizontal rules. It should display nicely when viewed in a Discord channel or on a Git hosting platform like GitHub.
